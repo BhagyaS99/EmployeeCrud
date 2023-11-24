@@ -1,0 +1,36 @@
+<div class="container mt-3">
+  <div class="row">
+    <div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+      <strong>{{errMsg}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="successMsg" class="alert alert-success alert-dismissible fade show text-center"  role="alert">
+      <strong>{{successMsg}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <form [formGroup]="employeeForm" >
+    <div class="col-md-5 mt-2">
+    <input type="text" class="form-control" formControlName="FirstName" placeholder="Enter first name">
+    <span class="error" *ngIf="FirstName.invalid && FirstName.touched">Length should be between 2 and 100 characters.</span>
+  </div>
+  <div class="col-md-5 mt-2" >
+    <input type="text" class="form-control" formControlName="LastName" placeholder="Enter last name">
+    <span class="error" *ngIf="LastName.invalid && LastName.touched">Length should be between 1 and 100 characters. </span>
+  </div>
+  <div class="col-md-5 mt-2">
+    <input type="text" class="form-control" formControlName="Des" placeholder="Enter Designation">
+    <span class="error" *ngIf="Des.invalid && Des.touched">Length should be between 2 and 100 characters.</span>
+  </div>
+  <div class="col-md-5 mt-2">
+    <input type="text" class="form-control" formControlName="Salary" placeholder="Enter Salary">
+    <span class="error" *ngIf="Salary.invalid && Salary.touched">Enter numerical values.</span>
+  </div>
+  <div class="col-md-5 mt-2" *ngIf="!getparamid">
+   <button class="btn btn-primary" (click)="employeeSubmit()">Add Employee</button>
+  </div>
+  <div class="col-md-5 mt-2" *ngIf="getparamid">
+    <button class="btn btn-primary" (click)="updateEmployee()">Edit Employee</button>
+   </div>
+  </form>
+</div>
+</div>
