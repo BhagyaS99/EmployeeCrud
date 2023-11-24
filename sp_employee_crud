@@ -1,0 +1,32 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_employee_crud`(
+IN _ID INT,
+IN _FirstName VARCHAR(45),
+IN _LastName VARCHAR(45),
+IN _Des VARCHAR(45),
+IN _Salary INT,
+IN _Option INT
+
+)
+BEGIN
+	 CASE _Option
+		WHEN 0 THEN
+		   SELECT * FROM employee;
+		WHEN 1 THEN
+		   SELECT * FROM employee WHERE ID = _ID;
+	    WHEN 2 THEN
+		   DELETE FROM employee WHERE ID =_ID;
+        WHEN 3 THEN
+	      INSERT INTO employee(FirstName,LastName,Des,Salary)
+		  VALUES (_FirstName,_LastName,_Des,_Salary);
+		WHEN 4 THEN
+		  UPDATE employee
+		  SET FirstName = _FirstName,
+		  LastName = _LastName,
+		  Des=_Des,
+		  Salary = _Salary
+		  WHERE ID = _ID;
+	END CASE;
+    
+    SELECT ROW_COUNT() AS 'affectedRows';
+
+END
